@@ -1,6 +1,7 @@
 package com.udacity;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by udacity 2016
@@ -151,6 +152,35 @@ public class Game {
     public String checkGameWinner(char [][]grid){
         String result = "None";
         //Student code goes here ...
+
+        char [][] winConditions = {
+                {grid[0][0], grid[1][0], grid[2][0]},
+                {grid[0][0], grid[0][1], grid[0][2]},
+                {grid[1][0], grid[1][1], grid[1][2]},
+                {grid[2][0], grid[2][1], grid[2][2]},
+                {grid[0][1], grid[1][1], grid[2][1]},
+                {grid[0][2], grid[1][2], grid[2][2]},
+                {grid[0][0], grid[1][1], grid[2][2]},
+                {grid[2][0], grid[1][1], grid[0][2]}
+        };
+        int size = winConditions.length;
+        for(int k = 0; k < size; k++) {
+            if (winConditions[k][0] == winConditions[k][1] && winConditions[k][2] == winConditions[k][1]) {
+                if (winConditions[k][0] == 'x') {
+                    result = "X wins";
+                } else if (winConditions[k][0] == 'o') {
+                    result = "O wins";
+                }
+            }
+
+        }
+            if(freeSpots == 0 ){
+                if(result == "None"){
+                    result = "Tie";
+                }
+            }
+
+
         return result;
     }
 
